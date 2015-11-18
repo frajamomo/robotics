@@ -15,6 +15,9 @@ for event in gamepad.read_loop():
                 print "Right"
             elif keyevent.keycode[0] == 'BTN_NORTH':
                 print "Left"
-            else:
-                print type(keyevent)
-                print keyevent
+            elif keyevent.keycode == 'BTN_THUMBL':
+                print "Left thumb button"
+            elif keyevent.keycode == 'BTN_THUMBR':
+                print "Right thumb button - EXITING"
+                exit()
+
