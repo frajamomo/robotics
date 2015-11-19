@@ -20,4 +20,9 @@ for event in gamepad.read_loop():
             elif keyevent.keycode == 'BTN_THUMBR':
                 print "Right thumb button - EXITING"
                 exit()
-
+    if event.type == ecodes.EV_ABS:
+        absevent = categorize(event)
+        print ecodes.bytype[absevent.event.type][absevent.event.code], absevent.event.value
+#    elif event.type == ecodes.EV_SYN:
+#        synevent = categorize(event)
+#        print "----->", synevent
