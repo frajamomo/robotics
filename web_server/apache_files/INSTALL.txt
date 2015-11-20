@@ -18,4 +18,3 @@ sudo service apache2 reload
 # Add to /etc/hosts file an entry to access to the python-web site:
 sudo echo  "127.0.0.1 python-web" >> /etc/hosts
 #
-
