@@ -1,1 +1,21 @@
+#
+# Followed tutorial:
+# http://librosweb.es/libro/python/capitulo_13/python_bajo_apache.html
+#
+# Load wgsi module in apache:
+sudo a2enmod wsgi
+#
+# Files to deploy out of git folder:
 cp  python-web /etc/apache2/sites-available/python-web.conf
+#
+# Enable the site:
+sudo a2ensite python-web
+#
+# Reload of apache2
+sudo service apache2 reload
+#
+#
+# Add to /etc/hosts file an entry to access to the python-web site:
+sudo echo  "127.0.0.1 python-web" >> /etc/hosts
+#
+
