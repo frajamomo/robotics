@@ -25,7 +25,7 @@ for event in gamepad.read_loop():
             elif keyevent.keycode == 'BTN_SELECT':
                 print "Select button"
             elif keyevent.keycode == 'BTN_MODE':
-                print "mode button"
+                print "Mode button"
     if event.type == ecodes.EV_ABS:
         absevent = categorize(event)
         print ecodes.bytype[absevent.event.type][absevent.event.code], absevent.event.value
