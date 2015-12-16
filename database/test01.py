@@ -1,4 +1,8 @@
 import MySQLdb
+
+
+
+
 db = MySQLdb.connect("localhost","javier","password","Monitoring" )
 cursor = db.cursor()
 
