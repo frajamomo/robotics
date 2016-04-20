@@ -20,3 +20,8 @@ First install python-smbus using "sudo apt-get install python-smbus"
 sudo nano /etc/modprobe.d/raspi-blacklist.conf # infront of i2c
 sudo nano /etc/modules i2c-dev
 sudo reboot
+
+
+You can find the wiring diagram at:
+http://www.rpiblog.com/2012/07/interfacing-16x2-lcd-with-raspberry-pi.html
+
