@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 import requests
+import sys
+sys.path.append("../test04_lcd/")
 
+import lcddriver
 from time import sleep
 from datetime import datetime
 
@@ -9,6 +12,7 @@ from datetime import datetime
 
 # Yahoo Weather City ID's more available at https://weather.yahoo.com
 cities = [ ('Amsterdam', '727232'),
+           ('Madrid', '766273'),
            ('Bangkok',  '1225448'),
            ('Beijing', '2151330'),
            ('Berlin', '638242'),
@@ -44,6 +48,7 @@ def getWeatherConditions() :
         return "Feed Error"
 
 if __name__ == "__main__":
+    lcd = lcddriver.lcd()
     while 1:
         data = getWeatherConditions()
         if( type(data) != type(dict()) or "error" in data):
@@ -60,9 +65,11 @@ if __name__ == "__main__":
                 city = cities[c][0]
                 cond = data["query"]["results"]["channel"][c]["item"]["condition"]["text"]
                 temp = data["query"]["results"]["channel"][c]["item"]["condition"]["temp"]
-                #lcd.clear()
+                lcd.lcd_clear()
+                lcd.lcd_display_string('{:^16}'.format(city), 1)
+                lcd.lcd_display_string("%-13.13s %2s" % (cond, temp), 2)
                 # Display city temperature and condition
-                print city + " " + temp + " " + cond
-                #lcd.lcd_display_string(city + " " + temp, 1)
-                sleep(1)
+                print "%-14.14s %2s" % (cond, temp)
+                sleep(3)
+
 

@@ -2,9 +2,7 @@ import lcddriver
 import datetime
 from time import sleep
 
-
 lcd = lcddriver.lcd()
-
 try:
     while True:
         ahora_dia  = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d')
