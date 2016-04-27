@@ -1,9 +1,6 @@
 [submodule "test04_lcd/16x2-python-i2c-lib"]
 	path = test04_lcd/16x2-python-i2c-lib
 	url = https://bitbucket.org/ryanteckltd/16x2-python-i2c-lib.git
-[submodule "test06_lcd_custom/Adafruit-Raspberry-Pi-Python-Code"]
-	path = test06_lcd_custom/Adafruit-Raspberry-Pi-Python-Code
-	url = git@github.com:adafruit/Adafruit-Raspberry-Pi-Python-Code.git
 [submodule "test06_lcd_custom/Adafruit_Python_CharLCD"]
 	path = test06_lcd_custom/Adafruit_Python_CharLCD
 	url = https://github.com/adafruit/Adafruit_Python_CharLCD
