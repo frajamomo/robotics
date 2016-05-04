@@ -4,3 +4,6 @@
 [submodule "test06_lcd_custom/Adafruit_Python_CharLCD"]
 	path = test06_lcd_custom/Adafruit_Python_CharLCD
 	url = https://github.com/adafruit/Adafruit_Python_CharLCD
+[submodule "test02_dht22/Adafruit_Python_DHT"]
+	path = test02_dht22/Adafruit_Python_DHT
+	url = git@github.com:adafruit/Adafruit_Python_DHT.git
