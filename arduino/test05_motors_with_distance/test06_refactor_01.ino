@@ -60,10 +60,11 @@ void setup()
 void loop()
 {
     float dist = getDistance();
+    Serial.print("Distance : ");
     Serial.println(dist);
 
-    if (dist < 10.00) {
-      digitalWrite(led, HIGH);
+    if (dist > 10.00) or (dist == OUT_OF_RANGE_DISTANCE) {
+      digitalWrite(led, LOW);
       // Drive forwards at 100%
       digitalWrite( LEFT_MOTOR_DIR_PIN, HIGH );
       digitalWrite( RIGHT_MOTOR_DIR_PIN, HIGH );
@@ -78,13 +79,17 @@ void loop()
       analogWrite( RIGHT_MOTOR_PWM_PIN, 50 );
     }
     else {
-      digitalWrite(led, LOW);
+      digitalWrite(led, HIGH);
       // Stop motors
       digitalWrite( LEFT_MOTOR_DIR_PIN, HIGH );
       digitalWrite( RIGHT_MOTOR_DIR_PIN, HIGH );
       analogWrite( LEFT_MOTOR_PWM_PIN, 0 );
       analogWrite( RIGHT_MOTOR_PWM_PIN, 0 );
-
+      // TODO: Turn slowly until distance > 10
+      while ( getDistance() < 10.00 ) {
+        digitalWrite( LEFT_MOTOR_DIR_PIN, HIGH );
+        analogWrite( LEFT_MOTOR_PWM_PIN, 20 );
+      }
     }
   }
 
