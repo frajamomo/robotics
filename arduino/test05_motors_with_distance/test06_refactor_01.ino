@@ -63,7 +63,7 @@ void loop()
     Serial.print("Distance : ");
     Serial.println(dist);
 
-    if (dist > 10.00) or (dist == OUT_OF_RANGE_DISTANCE) {
+    if ((dist > 10.00) or (dist == OUT_OF_RANGE_DISTANCE)) {
       digitalWrite(led, LOW);
       // Drive forwards at 100%
       digitalWrite( LEFT_MOTOR_DIR_PIN, HIGH );
@@ -91,8 +91,6 @@ void loop()
         analogWrite( LEFT_MOTOR_PWM_PIN, 20 );
       }
     }
-  }
-
   // wait
   delay(70);
 }
