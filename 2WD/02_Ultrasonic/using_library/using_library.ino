@@ -1,4 +1,7 @@
-#include <HCSR04.h>
+#include <hcsr04.h>
+
+
+
 HCSR04 hc(9,8);//initialisation class HCSR04 (trig pin , echo pin)
 
 void setup()
@@ -9,4 +12,3 @@ void loop()
   Serial.println( hc.dist() ); //return current distance (cm) in serial
   delay(100); 
 } 
-
