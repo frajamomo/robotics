@@ -37,12 +37,14 @@ void setup() {
 
 void loop() {
   distancia = getDistance(TRIG_PIN,ECHO_PIN);
+
   if (distancia < 10) {
     digitalWrite(LED_BUILTIN, HIGH);
   }
   else {
     digitalWrite(LED_BUILTIN, LOW);
   }
+
   Serial.println(distancia);// put your main code here, to run repeatedly:
   delay(200);
 }
