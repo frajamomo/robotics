@@ -2,11 +2,11 @@
 #include <LiquidCrystal_I2C.h>
 #include <L298N.h>
 
-
+//pin definition for the HC-SR04 ultrasonic distance sensor
 #define TRIG_PIN 2    // Trigger
 #define ECHO_PIN 3    // Echo
 
-//pin definition
+//pin definition for the L298n motor driver
 #define EN_Right 10
 #define IN1_Right 9
 #define IN2_Right 8
@@ -18,6 +18,8 @@
 L298N motorRight(EN_Right, IN1_Right, IN2_Right);
 L298N motorLeft(EN_Left, IN3_Left, IN4_Left);
 
+//Create the LCD with 0x3F address and 16x2 size
+LiquidCrystal_I2C lcd(0x3F, 16, 2); //
 
 const unsigned long DUTY_INTERVAL = 200;
 unsigned long gLastCommandTime = 0;
@@ -48,9 +50,6 @@ int getDistance(int trigPin, int echoPin) // returns the distance (cm)
 }
 
 
-//Crear el objeto lcd  dirección  0x3F y 16 columnas x 2 filas
-LiquidCrystal_I2C lcd(0x3F, 16, 2); //
-
 void setup() {
 
   Serial.begin (9600);
@@ -64,8 +63,6 @@ void setup() {
   //Encender la luz de fondo.
   lcd.backlight();
 
-  // Escribimos el Mensaje en el LCD.
-  //lcd.print("Hola Mundo");
   motorRight.setSpeed(150); // an integer between 0 and 255
   motorLeft.setSpeed(150); // an integer between 0 and 255
 }
@@ -84,34 +81,33 @@ void loop() {
       digitalWrite(LED_BUILTIN, LOW);
     }
 
-    // Serial.println(distancia);// put your main code here, to run repeatedly:
-
-    char msg[17];
-    sprintf(msg, "Distancia: %3d", distancia);
+    char line0[17];
+    sprintf(line0, "Distancia: %3d", distancia);
     lcd.setCursor(0, 0);
-    lcd.print(msg);
-
+    lcd.print(line0);
 
     // Ubicamos el cursor en la primera posición(columna:0) de la segunda línea(fila:1)
     lcd.setCursor(0, 1);
     // Escribimos el número de segundos trascurridos
     lcd.print(millis() / 1000);
     lcd.print(" Segundos");
-    delay(100);
 
     if ((distancia == 0) or (distancia > 20)) {
+      // FULL SPEED
       motorRight.setSpeed(150); // an integer between 0 and 255
       motorLeft.setSpeed(150); // an integer between 0 and 255
       motorRight.forward();
       motorLeft.forward();
     }
     else if ((distancia > 10.00) and (distancia < 20.00)) {
+      // MEDIUM SPEED
       motorRight.setSpeed(100); // an integer between 0 and 255
       motorLeft.setSpeed(100); // an integer between 0 and 255
       motorRight.forward();
       motorLeft.forward();
     }
     else if (distancia < 10.00) {
+      // STOP
       motorRight.stop();
       motorLeft.stop();
     }
