@@ -48,7 +48,22 @@ int getDistance(int trigPin, int echoPin) // returns the distance (cm)
 
   return distance; //We return the result. Here you can find a 0 if we timed out
 }
+void retroceder() {
+  motorRight.setSpeed(200);
+  motorLeft.setSpeed(200);
+  motorRight.backward();
+  motorLeft.backward();
+  delay(1500);
+  motorRight.stop();
+  motorLeft.stop();
+}
 
+void girar() {
+  motorRight.setSpeed(150);
+  motorRight.backward();
+  delay(500);
+  motorRight.stop();
+}
 
 void setup() {
 
@@ -99,17 +114,17 @@ void loop() {
       motorRight.forward();
       motorLeft.forward();
     }
-    else if ((distancia > 10.00) and (distancia < 20.00)) {
-      // MEDIUM SPEED
+    else if ((distancia > 15.00) and (distancia < 20.00)) {
       motorRight.setSpeed(100); // an integer between 0 and 255
       motorLeft.setSpeed(100); // an integer between 0 and 255
       motorRight.forward();
       motorLeft.forward();
     }
-    else if (distancia < 10.00) {
-      // STOP
+    else if (distancia < 15.00) {
       motorRight.stop();
       motorLeft.stop();
+      retroceder();
+      girar();
     }
 
     gLastCommandTime = millis();
